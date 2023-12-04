@@ -1,7 +1,0 @@
-com/emagia/master/controller/MasterSlaveController.class
-com/emagia/master/controller/PgpEncryptionController.class
-com/emagia/master/Domain/MasterSlave.class
-com/emagia/master/MasterSlaveApplication.class
-com/emagia/master/config/SwaggerConfiguration.class
-com/emagia/master/Service/PgpEncryption.class
-com/emagia/master/Repository/MasterSlaveRepository.class
