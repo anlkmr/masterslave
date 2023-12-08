@@ -16,7 +16,7 @@ RUN git clone https://github.com/anlkmr/masterslave.git .
 
 # Build the project
 #RUN ./mvnw package
-RUN mvn install
+RUN mvn clean install
 
 # Expose the port your Spring Boot application will run on
 EXPOSE 8090
