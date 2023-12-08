@@ -5,7 +5,8 @@ LABEL "Author"="Anil"
 # Install necessary dependencies
 RUN apt-get update -y && apt-get install -y \
     git \
-    openjdk-17-jdk
+    openjdk-17-jdk \
+    maven
 
 # Set the working directory
 WORKDIR /app
@@ -14,10 +15,10 @@ WORKDIR /app
 RUN git clone https://github.com/anlkmr/masterslave.git .
 
 # Build the project
-RUN ./mvnw package
+RUN mvn package
 
 # Expose the port your Spring Boot application will run on
-EXPOSE 8080
+EXPOSE 8090
 
 # Command to run the application
 CMD ["java", "-jar", "target/masterslavev1.jar"]
