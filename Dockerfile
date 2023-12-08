@@ -1,17 +1,23 @@
-FROM tomcat:10-jre17
+# Use an official Ubuntu runtime as a parent image
+FROM ubuntu:latest
 LABEL "Project"="masterslave"
 LABEL "Author"="Anil"
+# Install necessary dependencies
+RUN apt-get update -y && apt-get install -y \
+    git \
+    openjdk-17-jdk
 
-RUN apt update && apt install openjdk-17-openjdk -y && apt install maven -y
-RUN git clone -b master https://github.com/anlkmr/masterslave.git && cd masterslave && mvn install
-RUN rm -rf /usr/local/tomcat/webapps/*
-COPY target/masterSlavev1.jar /usr/local/tomcat/webapps/ROOT.jar
+# Set the working directory
+WORKDIR /app
 
+# Clone the Spring Boot project from your Git repository
+RUN git clone https://github.com/anlkmr/masterslave.git .
 
-#WORKDIR /usr/src/app/
+# Build the project
+RUN ./mvnw package
 
-EXPOSE 9000
-CMD ["catalina.sh","run"]
-WORKDIR /usr/local/tomcat/.
-#ENTRYPOINT ["java","-jar","book-work-0.0.1.jar"]
-# Test
+# Expose the port your Spring Boot application will run on
+EXPOSE 8080
+
+# Command to run the application
+CMD ["java", "-jar", "target/masterslave-v1.jar"]
